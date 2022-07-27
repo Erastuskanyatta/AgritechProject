@@ -37,7 +37,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/v1/user")
 public class UserController {
     @Autowired
-    private  final AppUsersRepo appUsersRepo;
+    private  final   AppUsersRepo appUsersRepo;
     @Autowired
     private  final OtpRepo otpRepo;
 
@@ -72,7 +72,7 @@ public class UserController {
         Map<String, Object> registerNewUser = new HashMap<>();
         AppUsers register = userService.registerUser(appUsers);
         registerNewUser.put("status_code", HttpStatus.CREATED.value());
-        registerNewUser.put("Message", " Please click the link in your email account to verify your account.");
+        registerNewUser.put("Message", " Please click on the link in your email account to verify your account.");
         registerNewUser.put("Data", register);
 //        registerNewUser.put("Date: ", new Date());
         registerNewUser.put("Content-Type:", ContentType.APPLICATION_JSON);
@@ -236,7 +236,7 @@ public class UserController {
         emailSenderServices.sendEmail(
                 appUsers.getEmail(),
                 "Password Reset:",
-                "Dear, " + appUsers.username + " You have requested to have your password reset for your account at Agritech. Please visit this link to reset your password: " + ResetEmail
+                "Dear, " + appUsers.username + " You have requested to have your password reset for your account at Agritech.Please visit this link to reset your password: " + ResetEmail
                         + " Please ignore this email if you have not requested to change your password!"
         );
         return url;
